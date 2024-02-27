@@ -4,6 +4,7 @@ import PropsDemo from "./exercises/PropsDemo";
 import ListDemo from "./exercises/ListDemo";
 import EventDemo from "./exercises/EventDemo";
 import FormUncontrolled from "./exercises/FormUncontrolled";
+import StateDemo1 from "./exercises/StateDemo1";
 
 export default function App() {
   const [selectedView, setSelectedView] = useState("info");
@@ -28,6 +29,7 @@ export default function App() {
             {selectedView == "lists1" ? <ListDemo title="Lists exercise" /> : null}
             {selectedView == "events1" ? <EventDemo title="Events exercise" /> : null}
             {selectedView == "forms1" ? <FormUncontrolled title="Forms exercise" /> : null}
+            {selectedView == "state1" ? <StateDemo1 title="State1 exercise" /> : null}
             {/**Add the exercise components you create for each exercise using the key you used for the matching button  */}
           </div>
         </div>
@@ -56,6 +58,9 @@ const Buttons = (props: ButtonProps) => {
       </button>
       <button className="btn-w100" onClick={() => handleSelected("forms1")}>
         Forms demo
+      </button>
+      <button className="btn-w100" onClick={() => handleSelected("state1")}>
+        State demo1
       </button>
     </>
   );
