@@ -10,10 +10,10 @@ part four --> Add a button to start and stop the interval via a boolean state va
 */
 export default function UseEffectDemo({ title }: BaseProps) {
   const [count, setCount] = useState(0);
-  const [running, setRunning] = useState(true);
+  const [shouldCount, setShouldCount] = useState(true);
 
   useEffect(() => {
-    if (running) {
+    if (shouldCount) {
       const i = setInterval(() => {
         setCount((prev) => prev + 1);
       }, 1000);
@@ -21,13 +21,13 @@ export default function UseEffectDemo({ title }: BaseProps) {
         clearInterval(i);
       };
     }
-  }, [running]);
+  }, [shouldCount]);
 
   return (
     <>
       <h2>{title}</h2>
       <p>{count}</p>
-      <button onClick={() => setRunning(!running)}>{running ? "Stop" : "Start"}</button>
+      <button onClick={() => setShouldCount((prev) => !prev)}>{shouldCount ? "Stop Count" : "Start Count"}</button>
     </>
   );
 }
