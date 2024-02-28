@@ -8,14 +8,14 @@ type Props = BaseProps;
 export default function StateDemo3({ title }: Props) {
   const [users, setUsers] = useState<User[]>(usersFromDB || []);
   //Derived value. No need for a useState here
-  const nextId = 1 + users.reduce((max, user) => (user.id > max ? user.id : max), users[0].id);
+  const nextId = users.length > 0 ? Math.max(...users.map((user) => user.id || 0)) + 1 : 1;
 
   const onSubmitUser = (newUser: User) => {
-    newUser.id = nextId;
-    //This is the only place you have to change something
-    setUsers([...users, newUser]);
-    users.push(newUser);
-    console.log(users);
+    // Create a new user object with the updated id
+    const updatedUser = { ...newUser, id: nextId };
+    // Update the users state with the new user
+    setUsers([...users, updatedUser]);
+    console.log([...users, updatedUser]);
   };
 
   return (
